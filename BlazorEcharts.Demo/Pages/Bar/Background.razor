@@ -1,0 +1,73 @@
+﻿@page "/bar/background"
+<Echarts Option="@option"></Echarts>
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+            <code>
+                option = new
+                {
+                Title = new { Text = "Bar Background Chart" },
+                XAxis =
+                new
+                {
+                Type = "category",
+                Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+                },
+                YAxis = new { Type = "value" },
+                Series = new object[]
+                {
+                new
+                {
+                Data =new double[]{120, 200, 150, 80, 70, 110, 130 },
+                Type = "bar",
+                ShowBackground= true,
+                BackgroundStyle=new {
+                Color= "rgba(220, 220, 220, 0.8)"
+                }
+                }
+
+                }
+                };
+            </code>
+        </pre>
+    </div>
+</div>
+
+@code{
+
+    private object option;
+
+    protected override void OnInitialized()
+    {
+
+        option = new
+        {
+            Title = new { Text = "Bar Background Chart" },
+            XAxis =
+        new
+        {
+            Type = "category",
+            Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+        },
+            YAxis = new { Type = "value" },
+            Series = new object[] 
+            {
+                new
+                {
+                   Data =new double[]{120, 200, 150, 80, 70, 110, 130 },
+                   Type = "bar",
+                   ShowBackground= true,
+                   BackgroundStyle=new {
+                   Color= "rgba(220, 220, 220, 0.8)"
+                }
+              }
+
+           }
+        };
+
+    }
+
+}

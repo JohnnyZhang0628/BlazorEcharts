@@ -1,0 +1,94 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">BlazorEcharts.Web</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> 首页
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="#">
+                <span class="oi oi-plus" aria-hidden="true"></span> 折线图
+                <span class="oi oi-chevron-top text-center" aria-hidden="true"></span>
+            </NavLink>
+
+            <ul class="nav flex-column hide">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="line/index">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Basic Line
+                    </NavLink>
+                </li>
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="line/area">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Basic Area
+                    </NavLink>
+                </li>
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="line/smooth">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Smoothed Line
+                    </NavLink>
+                </li>
+
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="line/stack">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Stacked Area
+                    </NavLink>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="bar">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>柱形图
+            </NavLink>
+            <ul class="nav flex-column hide">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="bar/animationDelay">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Animation Delay
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="bar/background">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Bar Background
+                    </NavLink>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="bar">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>饼图
+            </NavLink>
+            <ul class="nav flex-column hide">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="pie/doughnut">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Doughnut Chart
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="pie/custom">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span>Custom
+                    </NavLink>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

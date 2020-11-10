@@ -1,0 +1,97 @@
+﻿@inject IJSRuntime JSRuntime;
+
+<div id="@Id" style="width:@(Width+"px");height:@(Height+"px")"></div>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+    /// <summary>
+    /// div宽度，默认800
+    /// </summary>
+    [Parameter]
+    public double Width { get; set; } = 800;
+    /// <summary>
+    /// div高度 默认600
+    /// </summary>
+    [Parameter]
+    public double Height { get; set; } = 600;
+
+    /// <summary>
+    /// 配置选项
+    /// </summary>
+    [Parameter]
+    public object? Option { get; set; }
+
+    /// <summary>
+    /// 开始debug，默认false，
+    /// 启动会会打印option、事件回调参数
+    /// </summary>
+    [Parameter]
+    public bool Debug { get; set; } = false;
+
+    /// <summary>
+    /// 事件类型.
+    /// </summary>
+    [Parameter]
+    public List<EventType> EventTypes { get; set; } = new List<EventType>();
+
+    /// <summary>
+    /// 事件回调函数
+    /// </summary>
+    [Parameter]
+    public EventCallback<EchartsEventArgs> OnEventCallback { get; set; }
+
+    private EchartsEventInvokeHelper? _echartsEventInvokeHelper;
+
+    protected override void OnInitialized()
+    {
+
+        _echartsEventInvokeHelper = new EchartsEventInvokeHelper(async echartsParams =>
+        {
+            if (Debug)
+                Console.WriteLine($"echart id:{Id}, event callback params: {echartsParams}");
+
+            if (EventTypes.Count > 0 && OnEventCallback.HasDelegate)
+                await OnEventCallback.InvokeAsync(echartsParams);
+        });
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            // init echarts
+            await JSRuntime.InvokeVoidAsync("echartsFunction.init", Id);
+
+            // invoke event
+            if (EventTypes.Count > 0 && OnEventCallback.HasDelegate)
+            {
+                foreach (var eventType in EventTypes)
+                {
+                    await JSRuntime.InvokeVoidAsync("echartsFunction.on", Id, eventType.ToString(),
+                        DotNetObjectReference.Create(_echartsEventInvokeHelper));
+                }
+
+            }
+
+        }
+
+        if (Option == null)
+        {
+            Console.WriteLine($"echart id:{Id}, Option paramter is null!");
+            return;
+        }
+
+        string optionString = JsonConvert.SerializeObject(Option, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+        if (Debug)
+            Console.WriteLine($"echart id:{Id}, option: {optionString}");
+
+        // render
+        await JSRuntime.InvokeVoidAsync("echartsFunction.setOption", Id, optionString);
+
+    }
+
+}

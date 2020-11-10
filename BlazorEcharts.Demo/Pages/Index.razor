@@ -1,0 +1,141 @@
+﻿@page "/"
+
+
+<h1>BlazorEcharts <a href="https://github.com/JohnnyZhang0628/BlazorEcharts/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/JohnnyZhang0628/BlazorEcharts" /></a> <a href="https://www.nuget.org/packages/BlazorEcharts/"><img alt="NuGet" src="https://img.shields.io/nuget/v/BlazorEcharts" /></a> <img alt="downloads" src="https://img.shields.io/nuget/dt/BlazorEcharts" /></h1>
+
+<p>基于blazor封装Echarts组件</p>
+
+<h2>起步</h2>
+
+<p>1、安装 <code>BlazorEcharts</code></p>
+
+<p><code>Install-Package BlazorEcharts</code></p>
+
+<p>2、在 <code>wwwroot/index.html</code> 文件 (Blazor WebAssembly) 或 <code>Pages/_Host.cshtml</code> 文件 (Blazor Server) 中添加引用</p>
+
+<p>
+    <code>
+        &lt;script src=&quot;_content/BlazorEcharts/echarts.js&quot;&gt;&lt;/script&gt;
+        <br />
+        &lt;script src=&quot;_content/BlazorEcharts/main.js&quot;&gt;&lt;/script&gt;
+    </code>
+</p>
+<p>3、新建<code>razor</code>组件,复制以下代码</p>
+    
+<pre>
+<code>
+    &lt;Echarts Option=&quot;@@option&quot; Debug=&quot;true&quot; EventTypes=&quot;EventTypes&quot; OnEventCallback=&quot;OnEchartsEvent&quot;&gt;&lt;/Echarts&gt;
+    &lt;div&gt;
+        @@if (callbackArgs != null)
+        {
+            事件回调类型: @@callbackArgs.EventType
+            事件回调参数: @@callbackArgs.ToString()
+        }
+    &lt;/div&gt;
+    @@code
+    {
+        private object option;
+        private EchartsEventArgs? callbackArgs;
+
+        // 添加一个点击事件、和鼠标浮动事件
+        private List&lt;EventType&gt; EventTypes = new List&lt;EventType&gt; { EventType.click, EventType.mousemove };
+
+        protected override void OnInitialized()
+        {
+
+            option = new
+            {
+            Title = new { Text = &quot;Basic Line Chart&quot; },
+            XAxis = new
+            {
+            Type = &quot;category&quot;,
+            Data = new string[] { &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot; }
+            },
+            YAxis = new { Type = &quot;value&quot; },
+            Series = new object[] {
+            new
+            {
+            Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
+            Type = &quot;line&quot;
+            }
+
+            }
+            };
+
+        }
+
+        private void OnEchartsEvent(EchartsEventArgs args)
+        {
+            callbackArgs = args;
+        } 
+    }
+</code>
+</pre>
+
+<h2>组件配置选项</h2>
+
+<table class="table table-bordered">
+           <thead>
+               <tr>
+                   <th>名称</th>
+                   <th>数据类型</th>
+                   <th>默认值</th>
+                   <th>是否必须</th>
+                   <th>说明</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr>
+                   <td>Option</td>
+                   <td>object</td>
+                   <td>null</td>
+                   <td>是</td>
+                   <td>图标配置选项</td>
+               </tr>
+               <tr>
+                   <td>Id</td>
+                   <td>string</td>
+                   <td>guid</td>
+                   <td>否</td>
+                   <td>div id</td>
+               </tr>
+               <tr>
+                   <td>Width</td>
+                   <td>double</td>
+                   <td>800</td>
+                   <td>否</td>
+                   <td>div 宽度</td>
+               </tr>
+               <tr>
+                   <td>Height</td>
+                   <td>double</td>
+                   <td>600</td>
+                   <td>否</td>
+                   <td>div 高度</td>
+               </tr>
+               <tr>
+                   <td>Debug</td>
+                   <td>bool</td>
+                   <td>false</td>
+                   <td>否</td>
+                   <td>开启debug模式，打印option、事件回调参数</td>
+               </tr>
+               <tr>
+                   <td>EventTypes</td>
+                   <td>List &amp;lt;EventType&amp;gt;</td>
+                   <td></td>
+                   <td>否</td>
+                   <td>开启监听事件类型</td>
+               </tr>
+               <tr>
+                   <td>OnEventCallback</td>
+                   <td>EventCallback&amp;lt;EchartsEventArgs&amp;gt;</td>
+                   <td></td>
+                   <td>否</td>
+                   <td>监听事件回调函数</td>
+               </tr>
+           </tbody>
+        </table>
+
+
+

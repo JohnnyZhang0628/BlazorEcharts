@@ -1,0 +1,94 @@
+﻿@page "/line/index"
+<Echarts Option="@option" Debug="true" EventTypes="EventTypes" OnEventCallback="OnEchartsEvent"></Echarts>
+<div>
+    @if (callbackArgs != null)
+    {
+        <p>事件回调类型:@callbackArgs.EventType</p>
+        <p>事件回调参数:@callbackArgs.ToString()</p>
+    }
+</div>
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+            <code>
+                private object option;
+                private EchartsEventArgs? callbackArgs;
+
+                // 添加一个点击事件、和鼠标浮动事件
+                private List &lt;EventType&gt;
+                EventTypes = new List&lt;EventType&gt;{ EventType.click, EventType.mousemove };
+
+                protected override void OnInitialized()
+                {
+
+                option = new
+                {
+                Title = new { Text = "Basic Line Chart" },
+                XAxis = new
+                {
+                Type = "category",
+                Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+                },
+                YAxis = new { Type = "value" },
+                Series = new object[] {
+                new
+                {
+                Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
+                Type = "line"
+                }
+
+                }
+                };
+
+                }
+
+                private void OnEchartsEvent(EchartsEventArgs args)
+                {
+                callbackArgs = args;
+                }
+            </code>
+</pre>
+    </div>
+</div>
+
+@code{
+
+    private object option;
+    private EchartsEventArgs? callbackArgs;
+
+    // 添加一个点击事件、和鼠标浮动事件
+    private List<EventType> EventTypes = new List<EventType> { EventType.click, EventType.mousemove };
+
+    protected override void OnInitialized()
+    {
+
+        option = new
+        {
+            Title = new { Text = "Basic Line Chart" },
+            XAxis = new
+            {
+                Type = "category",
+                Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+            },
+            YAxis = new { Type = "value" },
+            Series = new object[] {
+                new
+                {
+                   Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
+                   Type = "line"
+                }
+
+           }
+        };
+
+    }
+
+    private void OnEchartsEvent(EchartsEventArgs args)
+    {
+        callbackArgs = args;
+    }
+
+}

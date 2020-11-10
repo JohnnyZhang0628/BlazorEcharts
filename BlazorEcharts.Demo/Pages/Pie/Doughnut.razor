@@ -1,0 +1,135 @@
+﻿@page "/pie/doughnut"
+<Echarts Option="@option"></Echarts>
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+        <code>
+                option = new
+                {
+                Title = new { Text = "Bar Background Chart" },
+                Tootip = new
+                {
+                Trigger = "item",
+                Formatter = "{a} &lt;br /&gt;{b}= {c} ({d}%)"
+                },
+                Legend = new
+                {
+                Orient = "vertical",
+                Right = 10,
+                Data = new object[] { "直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎" }
+                },
+
+                Series = new object[]
+                {
+                new
+                {
+
+                Name= "访问来源",
+                Type= "pie",
+                Radius= new string[]{"50%", "70%" },
+                AvoidLabelOverlap= false,
+                Label=new
+                {
+                Show= false,
+                Position= "center"
+                },
+                Emphasis=new
+                {
+                Label=new
+                {
+                show= true,
+                fontSize= "30",
+                fontWeight= "bold"
+                }
+                },
+                LabelLine=new
+                {
+                show= false
+                },
+                data=new object[]
+                {
+                new{ value= 335, name= "直接访问"},
+                new { value= 310, name= "邮件营销"},
+                new { value= 234, name= "联盟广告"},
+                new { value= 135, name= "视频广告"},
+                new { value= 1548, name= "搜索引擎"}
+                }
+
+                }
+                }
+
+                };
+            </code>
+        </pre>
+    </div>
+</div>
+
+@code{
+
+    private object option;
+
+    protected override void OnInitialized()
+    {
+
+        option = new
+        {
+            Title = new { Text = "Bar Background Chart" },
+            Tootip = new
+            {
+                Trigger = "item",
+                Formatter = "{a} <br />{b}= {c} ({d}%)"
+            },
+            Legend = new
+            {
+                Orient = "vertical",
+                Right = 10,
+                Data = new object[] { "直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎" }
+            },
+
+            Series = new object[]
+    {
+                new
+                {
+
+            Name= "访问来源",
+            Type= "pie",
+            Radius= new string[]{"50%", "70%" },
+            AvoidLabelOverlap= false,
+            Label=new
+                {
+                Show= false,
+                Position= "center"
+            },
+            Emphasis=new
+                {
+                Label=new
+                    {
+                    show= true,
+                    fontSize= "30",
+                    fontWeight= "bold"
+                    }
+                },
+            LabelLine=new
+                {
+                show= false
+            },
+            data=new object[]
+{
+                new{ value= 335, name= "直接访问"},
+                new { value= 310, name= "邮件营销"},
+                new { value= 234, name= "联盟广告"},
+                new { value= 135, name= "视频广告"},
+                new { value= 1548, name= "搜索引擎"}
+                }
+
+        }
+                                                                        }
+
+        };
+
+    }
+
+}

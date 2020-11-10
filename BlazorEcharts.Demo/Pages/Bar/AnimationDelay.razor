@@ -1,0 +1,143 @@
+﻿@page "/bar/animationDelay"
+<Echarts Option="@option" ></Echarts>
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+        <code>
+                option = new
+                {
+                title = new
+                {
+                text = "柱状图动画延迟"
+                },
+                legend = new
+                {
+                data = new string[] { "bar", "bar2" }
+                },
+                toolbox = new
+                {
+                // y= "bottom",
+                feature = new
+                {
+                magicType = new
+                {
+                type = new string[] { "stack", "tiled" }
+                },
+                dataView = new { },
+                saveAsImage = new
+                {
+                pixelRatio = 2
+                }
+                }
+                },
+                tooltip = new { },
+                xAxis = new
+                {
+                data = xAxisData,
+                splitLine = new
+                {
+                show = false
+                }
+                },
+                yAxis = new
+                {
+                },
+                series = new object[] {
+                new {
+                name= "bar",
+                type= "bar",
+                data= data1,
+                animationDelay= "function(idx) {return idx * 10;}".ToJsFunction()
+                }, new {
+                name= "bar2",
+                type= "bar",
+                data= data2,
+                animationDelay= "function(idx) {return idx * 10 + 100;}".ToJsFunction()
+                }
+                },
+                animationEasing = "elasticOut",
+                animationDelayUpdate = "function(idx) {return idx * 5;}".ToJsFunction()
+                };
+            </code>
+</pre>
+    </div>
+</div>
+
+@code{
+
+    private object option;
+
+    protected override void OnInitialized()
+    {
+        int count = 100;
+        var xAxisData = new string[count];
+        var data1 = new double[count];
+        var data2 = new double[count];
+        for (int i = 0; i < count; i++)
+        {
+            xAxisData[i] = "类目" + i;
+            data1[i] = ((Math.Sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
+            data2[i] = ((Math.Cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
+        }
+
+        option = new
+        {
+            title = new
+            {
+                text = "柱状图动画延迟"
+            },
+            legend = new
+            {
+                data = new string[] { "bar", "bar2" }
+            },
+            toolbox = new
+            {
+                // y= "bottom",
+                feature = new
+                {
+                    magicType = new
+                    {
+                        type = new string[] { "stack", "tiled" }
+                    },
+                    dataView = new { },
+                    saveAsImage = new
+                    {
+                        pixelRatio = 2
+                    }
+                }
+            },
+            tooltip = new { },
+            xAxis = new
+            {
+                data = xAxisData,
+                splitLine = new
+                {
+                    show = false
+                }
+            },
+            yAxis = new
+            {
+            },
+            series = new object[] {
+new {
+            name= "bar",
+        type= "bar",
+        data= data1,
+        animationDelay= "function(idx) {return idx * 10;}".ToJsFunction()
+        }, new {
+            name= "bar2",
+        type= "bar",
+        data= data2,
+        animationDelay= "function(idx) {return idx * 10 + 100;}".ToJsFunction()
+        }
+            },
+            animationEasing = "elasticOut",
+            animationDelayUpdate = "function(idx) {return idx * 5;}".ToJsFunction()
+        };
+
+    }
+
+}
