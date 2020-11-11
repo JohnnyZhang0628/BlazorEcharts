@@ -20,6 +20,17 @@
         &lt;script src=&quot;_content/BlazorEcharts/main.js&quot;&gt;&lt;/script&gt;
     </code>
 </p>
+
+<p>在<code>Startup</code>的<code>ConfigureServices</code>方法中，添加配置</p>
+<pre>
+    <code>
+        // 如果不监听finished事件，不需要添加该配置
+        services.AddSignalR(e =>
+        {
+            e.MaximumReceiveMessageSize = long.MaxValue;
+        });
+    </code>
+</pre>
 <p>3、新建<code>razor</code>组件,复制以下代码</p>
     
 <pre>

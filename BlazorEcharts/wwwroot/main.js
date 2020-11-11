@@ -46,10 +46,23 @@ window.echartsFunction = {
     },
     on: function (domId, eventType, dotnetHelper) {
         var target = this.getInstance(domId);
+
+        // 生命周期只触发一次的事件
+        var tiggerOnceEventList = ['finished'];
+
         target.on(eventType, function (params) {
-            console.log(domId)
             var echartsEventArgs = {};
             echartsEventArgs.eventType = eventType;
+
+            // 渲染完成，获取图片
+            if (eventType === 'finished') {
+                echartsEventArgs.dataUrl = target.getDataURL();
+            }
+
+            // 生命周期只触发一次的事件，触发后，解绑事件
+            if (tiggerOnceEventList.indexOf(eventType) > -1)
+                target.off(eventType);
+
             if (params) {
                 echartsEventArgs.componentType = params.componentType;
                 echartsEventArgs.seriesType = params.seriesType;
@@ -63,6 +76,8 @@ window.echartsFunction = {
                 echartsEventArgs.color = params.color;
                 echartsEventArgs.info = params.info;
             }
+
+            console.log(echartsEventArgs)
             dotnetHelper.invokeMethodAsync('EchartsEventCaller', echartsEventArgs);
         });
     }

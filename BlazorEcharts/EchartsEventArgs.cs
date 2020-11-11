@@ -68,12 +68,17 @@ namespace BlazorEcharts
         /// </summary>
         public object? Info { get; set; }
 
+        /// <summary>
+        /// 当图标完全渲染的时候，获取图片的base64编码
+        /// </summary>
+        public string? DataUrl { get; set; }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             foreach (var property in GetType().GetProperties())
             {
-                sb.Append($"{property.Name}:{property.GetValue(this)};");
+                sb.Append($"{property.Name}:{property.GetValue(this)}; ");
             }
             return sb.ToString();
         }

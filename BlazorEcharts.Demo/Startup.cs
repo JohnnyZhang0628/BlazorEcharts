@@ -21,6 +21,10 @@ namespace BlazorEcharts.Demo
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSignalR(e =>
+            {
+                e.MaximumReceiveMessageSize = long.MaxValue;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

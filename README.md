@@ -12,6 +12,14 @@
 <script src="_content/BlazorEcharts/echarts.js"></script>
 <script src="_content/BlazorEcharts/main.js"></script>
 ```
+在`Startup`的`ConfigureServices`方法中，添加配置
+```
+ // 如果不监听finished事件，不需要添加该配置
+        services.AddSignalR(e =>
+        {
+            e.MaximumReceiveMessageSize = long.MaxValue;
+        });
+```
 3、新建`razor`组件,复制以下代码
 ```
 Echarts Option="@option" Debug="true" EventTypes="EventTypes" OnEventCallback="OnEchartsEvent"></Echarts>
@@ -28,8 +36,8 @@ Echarts Option="@option" Debug="true" EventTypes="EventTypes" OnEventCallback="O
     private object option;
     private EchartsEventArgs? callbackArgs;
 
-    // 添加一个点击事件、和鼠标浮动事件
-    private List<EventType> EventTypes = new List<EventType> { EventType.click, EventType.mousemove };
+    // 添加一个点击事件、渲染完成事件
+    private List<EventType> EventTypes = new List<EventType> { EventType.click, EventType.finished };
 
     protected override void OnInitialized()
     {

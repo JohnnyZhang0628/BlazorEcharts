@@ -4,6 +4,13 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Echarts的Blazor组件，支持动态配置、监听事件</Description>
+		<Copyright />
+		<RepositoryUrl>https://github.com/JohnnyZhang0628/BlazorEcharts</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/JohnnyZhang0628/BlazorEcharts</PackageProjectUrl>
+		<Authors>JohnnyZhang</Authors>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 
