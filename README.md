@@ -9,7 +9,7 @@
 2、在 `wwwroot/index.html` 文件 (Blazor WebAssembly) 或 `Pages/_Host.cshtml` 文件 (Blazor Server) 中添加引用
 
 ```
-<script src="_content/BlazorEcharts/echarts.js"></script>
+<script src="_content/BlazorEcharts/echarts.min.js"></script>
 <script src="_content/BlazorEcharts/main.js"></script>
 ```
 在`Startup`的`ConfigureServices`方法中，添加配置
