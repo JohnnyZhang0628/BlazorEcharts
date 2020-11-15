@@ -1,5 +1,5 @@
 # BlazorEcharts [![GitHub license](https://img.shields.io/github/license/JohnnyZhang0628/BlazorEcharts)](https://github.com/JohnnyZhang0628/BlazorEcharts/blob/main/LICENSE) [![NuGet](https://img.shields.io/nuget/v/BlazorEcharts)](https://www.nuget.org/packages/BlazorEcharts/) ![downloads](https://img.shields.io/nuget/dt/BlazorEcharts)
-基于blazor封装Echarts组件
+基于blazor封装Echarts组件,[在线演示网址](http://blazor-echarts.5izhy.cn/)
 
 ## 起步
 1、安装 `BlazorEcharts`
@@ -45,6 +45,7 @@ Echarts Option="@option" Debug="true" EventTypes="EventTypes" OnEventCallback="O
         option = new
         {
             Title = new { Text = "Basic Line Chart" },
+            Tooltip=new {Formatter="function(params){return '星期：'+params.name+',数值：'+params.value;}".ToJsFunction()},
             XAxis = new
             {
                 Type = "category",

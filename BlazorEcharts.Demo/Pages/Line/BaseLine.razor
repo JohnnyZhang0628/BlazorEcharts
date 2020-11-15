@@ -5,7 +5,7 @@
     {
         <div>事件回调类型:@callbackArgs.EventType</div>
         <div> 事件回调参数:</div>
-        <div class="text-break">@callbackArgs.ToString()</div>
+        <div class="text-break overflow-auto border" style="height:200px;">@callbackArgs.ToString()</div>
     }
 </div>
 <div class="card">
@@ -14,7 +14,7 @@
     </div>
     <div class="card-body">
         <pre>
-        <code>
+            <code>
                 private object option;
                 private EchartsEventArgs? callbackArgs;
 
@@ -27,6 +27,7 @@
                 option = new
                 {
                 Title = new { Text = "Basic Line Chart" },
+                Tooltip=new {Formatter="function(params){return '星期：'+params.name+',数值：'+params.value;}".ToJsFunction()},
                 XAxis = new
                 {
                 Type = "category",
@@ -68,6 +69,7 @@
         option = new
         {
             Title = new { Text = "Basic Line Chart" },
+            Tooltip=new {Formatter="function(params){return '星期：'+params.name+',数值：'+params.value;}".ToJsFunction()},
             XAxis = new
             {
                 Type = "category",

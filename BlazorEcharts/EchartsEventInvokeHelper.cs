@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
+using Newtonsoft.Json;
 using System;
-using System.Web;
 
 namespace BlazorEcharts
 {
@@ -14,9 +14,9 @@ namespace BlazorEcharts
         }
 
         [JSInvokable]
-        public void EchartsEventCaller(EchartsEventArgs args)
+        public void EchartsEventCaller(string args)
         {
-            _action.Invoke(args);
+            _action.Invoke(JsonConvert.DeserializeObject<EchartsEventArgs>(args));
         }
     }
 }

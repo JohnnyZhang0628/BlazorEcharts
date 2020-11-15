@@ -8,9 +8,9 @@
 		<Description>Echarts的Blazor组件，支持动态配置、监听事件</Description>
 		<Copyright />
 		<RepositoryUrl>https://github.com/JohnnyZhang0628/BlazorEcharts</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/JohnnyZhang0628/BlazorEcharts</PackageProjectUrl>
+		<PackageProjectUrl>http://blazor-echarts.5izhy.cn/</PackageProjectUrl>
 		<Authors>JohnnyZhang</Authors>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 	</PropertyGroup>
 
 

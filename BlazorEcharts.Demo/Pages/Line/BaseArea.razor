@@ -1,6 +1,46 @@
 ﻿@page "/line/area"
 <Echarts Option="@option"></Echarts>
 
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+            <code>
+                private object option;
+
+                protected override void OnInitialized()
+                {
+
+                option = new
+                {
+                Title = new { Text = "Basic area Chart" },
+                XAxis =
+                new
+                {
+                Type = "category",
+                BoundaryGap = false,
+                Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+                },
+                YAxis = new { Type = "value" },
+                Series = new object[] {
+                new
+                {
+                Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
+                Type = "line",
+                AreaStyle= new object { }
+                }
+
+                }
+                };
+
+                }
+            </code>
+</pre>
+    </div>
+</div>
+
 @code{
 
     private object option;
@@ -12,12 +52,12 @@
         {
             Title = new { Text = "Basic area Chart" },
             XAxis =
-    new
-    {
-        Type = "category",
-        BoundaryGap = false,
-        Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
-    },
+            new
+            {
+                Type = "category",
+                BoundaryGap = false,
+                Data = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" }
+            },
             YAxis = new { Type = "value" },
             Series = new object[] {
                 new

@@ -1,8 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace BlazorEcharts
+﻿namespace BlazorEcharts
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    
     public enum EventType
     {
         /// <summary>

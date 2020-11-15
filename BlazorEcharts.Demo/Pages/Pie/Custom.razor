@@ -1,0 +1,153 @@
+﻿@page "/pie/custom"
+<Echarts Option="@option"></Echarts>
+<div class="card">
+    <div class="card-header">
+        查看源代码
+    </div>
+    <div class="card-body">
+        <pre>
+            <code>
+                private object option;
+
+                protected override void OnInitialized()
+                {
+
+                option = new
+                {
+
+                BackgroundColor= "#2c343c",
+                Title=new
+                {
+                Text= "Customized Pie",
+                Left= "center",
+                Top= 20,
+                TextStyle= new {Color= "#ccc"}
+                },
+
+                Tooltip=new{ Trigger= "item", Formatter= "{a} &lt;br /&gt;{b} = {c} ({d}%)"},
+                VisualMap=new
+                {
+                Show= false,
+                Min= 80,
+                Max= 600,
+                InRange=new{ colorLightness=new int[] { 0, 1 } }
+                },
+                series=new object[] {
+
+                new
+                {
+                Name= "访问来源",
+                Type= "pie",
+                Radius= "55%",
+                Center=new string[]{"50%", "50%" },
+                Data=new object[]
+                {
+                new { Value= 335, Name= "直接访问"},
+                new { Value= 310, Name= "邮件营销"},
+                new  { Value= 274, Name= "联盟广告"},
+                new { Value= 235, Name= "视频广告"},
+                new { Value= 400, Name= "搜索引擎"}
+                },
+                RoseType= "radius",
+                Label=new { Color= "rgba(255, 255, 255, 0.3)"},
+                LabelLine=new
+                {
+                LineStyle=new
+                {
+                Color= "rgba(255, 255, 255, 0.3)"
+                },
+                Smooth= 0.2,
+                Length= 10,
+                Length2= 20
+                },
+                ItemStyle=new
+                {
+                Color= "#c23531",
+                ShadowBlur= 200,
+                ShadowColor= "rgba(0, 0, 0, 0.5)"
+                },
+
+                AnimationType= "scale",
+                AnimationEasing= "elasticOut",
+                animationDelay= "function(idx) {return Math.random() * 200;}".ToJsFunction()
+                }
+                }
+                };
+            </code>
+        </pre>
+    </div>
+</div>
+
+@code{
+
+    private object option;
+
+    protected override void OnInitialized()
+    {
+
+        option = new
+        {
+
+            BackgroundColor= "#2c343c",
+            Title=new
+            {
+                Text= "Customized Pie",
+                Left= "center",
+                Top= 20,
+                TextStyle= new {Color= "#ccc"}
+            },
+
+            Tooltip=new{ Trigger= "item", Formatter= "{a} <br/>{b} = {c} ({d}%)"},
+            VisualMap=new
+            {
+                Show= false,
+                Min= 80,
+                Max= 600,
+                InRange=new{ colorLightness=new int[] { 0, 1 } }
+            },
+            series=new object[] {
+
+              new
+            {
+                Name= "访问来源",
+            Type= "pie",
+            Radius= "55%",
+            Center=new string[]{"50%", "50%" },
+            Data=new object[]
+                {
+                    new { Value= 335, Name= "直接访问"},
+                    new { Value= 310, Name= "邮件营销"},
+                    new  { Value= 274, Name= "联盟广告"},
+                    new { Value= 235, Name= "视频广告"},
+                    new { Value= 400, Name= "搜索引擎"}
+                },
+            RoseType= "radius",
+            Label=new { Color= "rgba(255, 255, 255, 0.3)"},
+            LabelLine=new
+                {
+                    LineStyle=new
+                    {
+                        Color= "rgba(255, 255, 255, 0.3)"
+                    },
+                Smooth= 0.2,
+                Length= 10,
+                Length2= 20
+            },
+            ItemStyle=new
+                {
+                Color= "#c23531",
+                ShadowBlur= 200,
+                ShadowColor= "rgba(0, 0, 0, 0.5)"
+                },
+
+            AnimationType= "scale",
+            AnimationEasing= "elasticOut",
+            animationDelay= "function(idx) {return Math.random() * 200;}".ToJsFunction()
+            }
+                    }
+        };
+
+
+    }
+
+}

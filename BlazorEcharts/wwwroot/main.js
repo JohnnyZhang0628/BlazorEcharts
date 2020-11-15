@@ -77,8 +77,8 @@ window.echartsFunction = {
                 echartsEventArgs.info = params.info;
             }
 
-            console.log(echartsEventArgs)
-            dotnetHelper.invokeMethodAsync('EchartsEventCaller', echartsEventArgs);
+            // console.log(echartsEventArgs)
+            dotnetHelper.invokeMethodAsync('EchartsEventCaller', JSON.stringify(echartsEventArgs));
         });
     }
 };

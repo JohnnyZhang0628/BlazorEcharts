@@ -34,17 +34,17 @@
 <p>3、新建<code>razor</code>组件,复制以下代码</p>
     
 <pre>
-<code>
-    &lt;Echarts Option=&quot;@@option&quot; Debug=&quot;true&quot; EventTypes=&quot;EventTypes&quot; OnEventCallback=&quot;OnEchartsEvent&quot;&gt;&lt;/Echarts&gt;
-    &lt;div&gt;
+    <code>
+        &lt;Echarts Option=&quot;@@option&quot; Debug=&quot;true&quot; EventTypes=&quot;EventTypes&quot; OnEventCallback=&quot;OnEchartsEvent&quot;&gt;&lt;/Echarts&gt;
+        &lt;div&gt;
         @@if (callbackArgs != null)
         {
-            事件回调类型: @@callbackArgs.EventType
-            事件回调参数: @@callbackArgs.ToString()
+        事件回调类型: @@callbackArgs.EventType
+        事件回调参数: @@callbackArgs.ToString()
         }
-    &lt;/div&gt;
-    @@code
-    {
+        &lt;/div&gt;
+        @@code
+        {
         private object option;
         private EchartsEventArgs? callbackArgs;
 
@@ -54,33 +54,34 @@
         protected override void OnInitialized()
         {
 
-            option = new
-            {
-            Title = new { Text = &quot;Basic Line Chart&quot; },
-            XAxis = new
-            {
-            Type = &quot;category&quot;,
-            Data = new string[] { &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot; }
-            },
-            YAxis = new { Type = &quot;value&quot; },
-            Series = new object[] {
-            new
-            {
-            Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
-            Type = &quot;line&quot;
-            }
+        option = new
+        {
+        Title = new { Text = &quot;Basic Line Chart&quot; },
+        Tooltip=new {Formatter="function(params){return '星期：'+params.name+',数值：'+params.value;}".ToJsFunction()},
+        XAxis = new
+        {
+        Type = &quot;category&quot;,
+        Data = new string[] { &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot; }
+        },
+        YAxis = new { Type = &quot;value&quot; },
+        Series = new object[] {
+        new
+        {
+        Data =new double[]{820, 932, 901, 934, 1290, 1330, 1320 },
+        Type = &quot;line&quot;
+        }
 
-            }
-            };
+        }
+        };
 
         }
 
         private void OnEchartsEvent(EchartsEventArgs args)
         {
-            callbackArgs = args;
-        } 
-    }
-</code>
+        callbackArgs = args;
+        }
+        }
+    </code>
 </pre>
 
 <h2>组件配置选项</h2>
@@ -133,14 +134,14 @@
                </tr>
                <tr>
                    <td>EventTypes</td>
-                   <td>List &amp;lt;EventType&amp;gt;</td>
+                   <td>List&lt;EventType&gt;</td>
                    <td></td>
                    <td>否</td>
                    <td>开启监听事件类型</td>
                </tr>
                <tr>
                    <td>OnEventCallback</td>
-                   <td>EventCallback&amp;lt;EchartsEventArgs&amp;gt;</td>
+                   <td>EventCallback&lt;EchartsEventArgs&gt;</td>
                    <td></td>
                    <td>否</td>
                    <td>监听事件回调函数</td>
